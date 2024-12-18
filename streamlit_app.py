@@ -48,6 +48,9 @@ if ingrrdiant_list and customer_name:
         st.success('Your Smoothie is ordered, '+ customer_name +'!', icon="✅")
         st.stop()
 
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
 
     
 
