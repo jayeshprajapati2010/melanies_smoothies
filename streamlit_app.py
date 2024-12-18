@@ -17,8 +17,13 @@ session = cnx.session()
 customer_name = st.text_input('Name on Smoothie')
 #st.write(customer_name)
 
-fruit_data = session.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(col('FRUIT_NAME'))
-#st.dataframe(data = fruit_data,use_container_width=True)
+fruit_data = session.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(col('FRUIT_NAME'),clo('SEARCH_ON'))
+st.dataframe(data = fruit_data,use_container_width=True)
+st.stop()
+
+# convert the Snowpark Dataframe to a Pandas Dataframe so we can use the LOC function
+#pd_df = fruit_data.to_pandas()
+#st.stop()
 
 ingrrdiant_list = st.multiselect(
     'Choose upto 5 fruits',
