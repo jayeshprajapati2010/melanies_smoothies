@@ -19,7 +19,6 @@ customer_name = st.text_input('Name on Smoothie')
 
 fruit_data = session.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(col('FRUIT_NAME'),col('SEARCH_ON'))
 st.dataframe(data = fruit_data,use_container_width=True)
-st.stop()
 
 # convert the Snowpark Dataframe to a Pandas Dataframe so we can use the LOC function
 pd_df = fruit_data.to_pandas()
@@ -43,7 +42,7 @@ if ingrrdiant_list and customer_name:
     for each_fruit in ingrrdiant_list:
         ingredients_string += each_fruit + ' ';
 
-       # search_on=pd_df.loc[pd_df['FRUIT_NAME'] == each_fruit, 'SEARCH_ON'].iloc[0]
+        #search_on=pd_df.loc[pd_df['FRUIT_NAME'] == each_fruit, 'SEARCH_ON'].iloc[0]
         #st.write('The search value for ', each_fruit,' is ', search_on, '.')
         
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+each_fruit)
