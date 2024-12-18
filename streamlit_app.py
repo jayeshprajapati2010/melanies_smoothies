@@ -23,7 +23,7 @@ fruit_data = session.table("SMOOTHIES.PUBLIC.FRUIT_OPTIONS").select(col('FRUIT_N
 # convert the Snowpark Dataframe to a Pandas Dataframe so we can use the LOC function
 pd_df = fruit_data.to_pandas()
 st.dataframe(pd_df)
-st.stop()
+#st.stop()
 
 ingrrdiant_list = st.multiselect(
     'Choose upto 5 fruits',
