@@ -43,11 +43,14 @@ if ingrrdiant_list and customer_name:
         ingredients_string += each_fruit + ' ';
 
         search_on=pd_df.loc[pd_df['FRUIT_NAME'] == each_fruit, 'SEARCH_ON'].iloc[0]
-        #st.write('The search value for ', each_fruit,' is ', search_on, '.')
-        
-        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+search_on)
-        st.text(each_fruit + ' Nutrision Intormation')
-        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        st.write('The search value for ', each_fruit,' is ', search_on, '.')
+
+        if search_on:
+            smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+search_on)
+            st.text(each_fruit + ' Nutrision Intormation')
+            sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        else: 
+            st.text('No Nutrision Intormation found')
 
 
     #st.write('Your selected : ',ingredients_string)
