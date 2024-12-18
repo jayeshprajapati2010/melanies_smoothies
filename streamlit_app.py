@@ -22,8 +22,8 @@ st.dataframe(data = fruit_data,use_container_width=True)
 st.stop()
 
 # convert the Snowpark Dataframe to a Pandas Dataframe so we can use the LOC function
-#pd_df = fruit_data.to_pandas()
-#st.stop()
+pd_df = fruit_data.to_pandas()
+st.stop()
 
 ingrrdiant_list = st.multiselect(
     'Choose upto 5 fruits',
