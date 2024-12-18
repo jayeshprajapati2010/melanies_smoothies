@@ -8,9 +8,8 @@ st.write(
     """Choose the Fruits you want in your smoothie!
     """)
 
-
 # Get the current credentials
-#session = get_active_session()
+
 cnx = st.connection("snowflake")
 session = cnx.session()
 
