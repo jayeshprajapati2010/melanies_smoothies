@@ -1,5 +1,6 @@
 # Import python packages
 import streamlit as st
+import requests
 from snowflake.snowpark.functions import col
 
 # Write directly to the app
@@ -30,11 +31,15 @@ sunmit_order = st.button('Submit Order')
 if ingrrdiant_list and customer_name:
     #st.write('Your selected : ',ingrrdiant_list)
     #st.text(ingrrdiant_list)
-    
+       
     ingredients_string =  ''
 
     for each_fruit in ingrrdiant_list:
-        ingredients_string += each_fruit + ',';
+        ingredients_string += each_fruit + ' ';
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/"+each_fruit)
+        st.text(each_fruit + ' Nutrision Intormation')
+        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+
 
     #st.write('Your selected : ',ingredients_string)
 
@@ -48,11 +53,8 @@ if ingrrdiant_list and customer_name:
         st.success('Your Smoothie is ordered, '+ customer_name +'!', icon="✅")
         st.stop()
 
-import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response.json())
-sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-    
+
+
 
 #contact = st.selectbox(
 #    'How would you like to be contected?',
